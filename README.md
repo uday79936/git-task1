@@ -129,6 +129,128 @@ git cherry pick:
 
 *Challenge 3: Create a merge conflict scenario and manually resolve it using git merge and git rebase:
 
+mkdir challenge-3            (To create the folder or directory)
+
+cd challenge-3                (To change the directory)
+
+git init                       (To intialize the .git file)
+
+touch challemge-1              (To create a file )
+
+git add challenge-1            (To add the file)
+
+git commit-m "challenge-1 added"
+
+touch master1
+
+git add master1
+
+git commit -m "master1 added"
+
+touch master2
+
+git add master2
+
+git commit -m "master2 added"
+
+git checkout -b master10
+
+touch feature
+
+git add feature
+
+git commit -m "feature added"
+
+$ git log --oneline --graph --all --date-order
+* c61d8e0 (HEAD -> master10) feature1 added
+| * 0b21349 (master) feature1 added
+* | 2967d18 feature addded
+|/
+* e12da9d master2 added
+* d4d42c2 master1 added
+* cf6e8d9 challenge-1 added
+
+git checkout master     (To switch the master)
+
+$ git log --oneline
+0b21349 (HEAD -> master) feature1 added
+e12da9d master2 added
+d4d42c2 master1 added
+cf6e8d9 challenge-1 added
+
+git merge master10
+
+$ git merge master10
+Merge made by the 'ort' strategy.
+ feature | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 feature
+
+ $ git log --oneline
+2392687 (HEAD -> master) Merge branch 'master10'
+c61d8e0 (master10) feature1 added
+0b21349 feature1 added
+2967d18 feature addded
+e12da9d master2 added
+d4d42c2 master1 added
+cf6e8d9 challenge-1 added
+
+
+$ git log --oneline --graph --all --decorate --date-order
+*   2392687 (HEAD -> master) Merge branch 'master10'
+|\
+| * c61d8e0 (master10) feature1 added
+* | 0b21349 feature1 added
+| * 2967d18 feature addded
+|/
+* e12da9d master2 added
+* d4d42c2 master1 added
+* cf6e8d9 challenge-1 added
+
+
+Challenge-4: Undo a commit using git reset (soft, mixed, and hard) and git revert – understand the differences:
+
+mkdir challenge-4                    (To create a folder or directory )
+
+cd challenge-4                       (To change directory as challenge-4)
+
+touch file-a.txt                (To create the file)
+
+git add file-a.txt               (To add the file)
+
+git commit -m "file-a.txt added"
+
+touch file-b.txt                (To create the file)
+
+git add file-b.txt               (To add the file)
+
+git commit -m "file-b.txt added"
+
+touch file-c.txt                (To create the file)
+
+git add file-c.txt               (To add the file)
+
+git commit -m "file-c.txt added"
+
+touch file-d.txt                (To create the file)
+
+git add file-d.txt               (To add the file)
+
+git commit -m "file-d.txt added"
+
+$ git log --oneline
+bd2dad9 (HEAD -> master) file-d.txt added
+92f8172 file-c.txt added
+cf07444 file-b.txt added
+d76b34b file-a.txt added
+
+$ git reflog
+9fcdd75 (HEAD -> master) HEAD@{0}: commit: file-d.txt added
+92f8172 HEAD@{1}: reset: moving to HEAD~1
+bd2dad9 HEAD@{2}: commit: file-d.txt added
+92f8172 HEAD@{3}: commit: file-c.txt added
+cf07444 HEAD@{4}: commit: file-b.txt added
+d76b34b HEAD@{5}: commit (initial): file-a.txt added
 
 
 
